@@ -12,6 +12,18 @@ seconds_in_year = 365 * 24 * 60 * 60
 years = 1
 t = np.linspace(0, years*seconds_in_year, frames)
 
+
+#_____
+
+r = 10
+theta = np.linspace(0, 2*np.pi, 100)
+x13 = r * np.cos(theta)
+y13= r * np.sin(theta)
+
+#_____
+
+
+
 def  move_func(s, t):
     ( x0_earth, v_x0_earth, y0_earth, v_y0_earth, 
       x0_venus, v_x0_venus, y0_venus, v_y0_venus,
@@ -63,7 +75,8 @@ ball_line1, = plt.plot([], [], '-', color='b')
 ball2, = plt.plot([], [], 'o', color='r')
 ball_line2, = plt.plot([], [], '-', color='r')
 
-plt.plot([0], [0], 'o', color='black', ms=20)
+plt.plot([0], [0], 'o', color='#FF4500', ms=30)
+plt.plot(x13, y13, 'o', color='orange')
 
 def animate(i):
     ball1.set_data(solve_func(i, 'point')[0])
@@ -78,6 +91,7 @@ ani = FuncAnimation(fig, animate, frames=frames, interval=30)
 plt.axis('equal')
 
 edge = 4*x0_earth
+
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
-ani.save('lab_12_task_1.gif')
+ani.save('black_hole.gif')
