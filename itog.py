@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from start_data import *
 
-plt.style.use('orange_background')
+plt.style.use('dark_background')
 frames = 365
 seconds_in_year = 365 * 24 * 60 * 60
 years = 1
 t = np.linspace(0, years*seconds_in_year, frames)
+iter_list = np.linspace(1, 0, 365)
 
 def  move_func(s, t):
     ( x1, vx1, y1, vy1, 
