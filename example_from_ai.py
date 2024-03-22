@@ -2,23 +2,20 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from start_data import *
 
-plt.style.use('dark_background')
 frames = 365
 seconds_in_year = 365 * 24 * 60 * 60
 years = 1
 t = np.linspace(0, years*seconds_in_year, frames)
-iter_list = np.linspace(1, 0, 365)
 
 def  move_func(s, t):
     ( x1, vx1, y1, vy1, 
       xm, vxm, ym, vym) = s
 #земля
     dxdt1 = vx1
-    dvxdt1 = -G * m * x1 / (x1**2 + y1**2) ** 1.5
+    dvxdt1 = -G * m * x1 / (x1**2 + y1**2) ** 1.5 - 0.01 * dxdt1
     dydt1 = vy1
-    dvydt1 = -G * m * y1 / (x1**2 + y1**2) ** 1.5
+    dvydt1 = -G * m * y1 / (x1**2 + y1**2) ** 1.5 - 0.01 * dydt1
 #марс
     dxdt2 = vxm
     dvxdt2 = -G * m * xm / (xm**2 + ym**2) ** 1.5
@@ -28,8 +25,19 @@ def  move_func(s, t):
             dxdt2, dvxdt2, dydt2, dvydt2)
 
 G = 6.67 * 10**(-11)
-m = 1.98 * 10**(30)
+m = 6300000 * (1.98 * 10**(30))
 
+# некая частица 1
+x0e = 149 * 10**9
+vx0e = 0
+y0e = 0
+vy0e = 3000000
+
+# некая частица 2
+x0m = 0
+vx0m = -24130
+y0m = 1.52 * 149 * 10**9
+vy0m = 0
 
 s0 = (x0e,  vx0e,  y0e,  vy0e,
       x0m,  vx0m,  y0m,  vy0m)
@@ -78,4 +86,4 @@ plt.axis('equal')
 edge = 4*x0e
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
-ani.save('lab_12_task_1.gif')
+ani.save('black_hole_fall.gif')
