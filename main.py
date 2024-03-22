@@ -13,12 +13,11 @@ years = 2
 t = np.linspace(0, years*seconds_in_year, frames)
 
 
-#_____
-
+#координаты для аккреционого диска
 accretion_disk_y =  [0, 0.5, 1, 0.5, 0]
 accretion_disk_x = [-2, -1, 0, 1, 2]
 
-
+# Параметры для Архимедовой спирали
 a = 0.5
 b = 0.1
 # 
