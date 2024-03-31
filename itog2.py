@@ -78,4 +78,4 @@ plt.axis('equal')
 edge = 4*x0e
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
-ani.save('black_hole.gif')
+ani.save('black_hole(mod_2).gif')
