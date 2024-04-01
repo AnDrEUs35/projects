@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from start_data import *
 
-frames = 1460
+frames = 365
 seconds_in_year = 365 * 24 * 60 * 60
 years = 10
 t = np.linspace(0, years*seconds_in_year, frames)
@@ -26,7 +26,7 @@ def  move_func(s, t):
             dxdt2, dvxdt2, dydt2, dvydt2)
 
 G = 6.67 * 10**(-11)
-m = 2*1.98 * 10**(30)
+m = 1.98 * 10**(30)
 A = 1
 B = 149 * 10**(-14)
 
