@@ -64,7 +64,7 @@ def solve_func(i, key):
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
 ball1, = plt.plot([], [], [], 'o', color='b')
-ball_line1, = plt.plot([], [], [], '-', color = 'b')
+ball_line1, = plt.plot([], [], [], '-', color = 'white')
 
 
 plt.plot([0], [0], [0], 'o', color='black', ms=20)
