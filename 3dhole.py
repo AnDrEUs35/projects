@@ -81,7 +81,7 @@ def animate(i):
 ani = FuncAnimation(fig, animate, frames=frames, interval=30)
 
 plt.axis('equal')
-edge = 3*x01
+edge = 2*x01
 ax.set_xlim3d(-edge, edge)
 ax.set_ylim3d(-edge, edge)
 ax.set_zlim3d(-edge, edge)
