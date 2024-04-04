@@ -41,6 +41,7 @@ v_y01 = 30000
 z01 = 10
 v_z01 = 30000
 
+backgrounds_colors = ['black']
 
 s0 = (x01, v_x01, y01, v_y01, z01, v_z01)
 sol = odeint(move_func, s0, t)
@@ -73,6 +74,7 @@ def animate(i):
     ball1.set_3d_properties(solve_func(i, 'point')[1])
     ball_line1.set_data(solve_func(i, 'line')[0])
     ball_line1.set_3d_properties(solve_func(i, 'line')[1])
+
 
 
 
