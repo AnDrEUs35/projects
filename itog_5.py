@@ -2,9 +2,9 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from start_data import *
+from start_data2 import *
 
-frames = 1000
+frames = 365
 seconds_in_year = 365 * 24 * 60 * 60
 years = 10
 t = np.linspace(0, years*seconds_in_year, frames)
@@ -14,11 +14,11 @@ def  move_func(s, t):
      x2, vx2, y2, vy2, z2, vz2,) = s
     
     dxdt1 = vx1
-    dvxdt1 = -G * m * x1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.exp(B * np.sqrt(x1**2 + y1**2 + z1**2)) 
+    dvxdt1 = -G * m * x1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.log(B / np.sqrt(x1**2 + y1**2 + z1**2)) 
     dydt1 = vy1
-    dvydt1 = -G * m * y1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.exp(B * np.sqrt(x1**2 + y1**2 + z1**2)) 
+    dvydt1 = -G * m * y1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.log(B / np.sqrt(x1**2 + y1**2 + z1**2)) 
     dzdt1 = vz1
-    dvzdt1 = -G * m * z1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.exp(B * np.sqrt(x1**2 + y1**2 + z1**2))
+    dvzdt1 = -G * m * z1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.log(B / np.sqrt(x1**2 + y1**2 + z1**2))
 
     dxdt2 = vx2
     dvxdt2 = -G * m * x2 / (x2**2 + y2**2 + z2**2) ** 1.5
@@ -60,7 +60,7 @@ def solve_func(i, key):
 
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
-ball1, = plt.plot([], [], [], 'o', color='b')
+ball1, = plt.plot([], [], [], 'o', color='b', ms=10)
 ball_line1, = plt.plot([], [], [], '-', color='b')
 ball2, = plt.plot([], [], [], 'o', color='r')
 ball_line2, = plt.plot([], [], [], '-', color='r')
@@ -85,4 +85,4 @@ edge = 4*x0e
 ax.set_xlim3d(-edge, edge)
 ax.set_ylim3d(-edge, edge)
 ax.set_zlim3d(-edge, edge)
-ani.save('black_hole(mod_4).gif')
+ani.save('black_hole(mod_5).gif')
