@@ -14,11 +14,11 @@ def  move_func(s, t):
      x2, vx2, y2, vy2, z2, vz2,) = s
     
     dxdt1 = vx1
-    dvxdt1 = -G * m * x1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.log(B / np.sqrt(x1**2 + y1**2 + z1**2)) 
+    dvxdt1 = -G * m * x1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.exp(B / np.sqrt(x1**2 + y1**2 + z1**2)) 
     dydt1 = vy1
-    dvydt1 = -G * m * y1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.log(B / np.sqrt(x1**2 + y1**2 + z1**2)) 
+    dvydt1 = -G * m * y1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.exp(B / np.sqrt(x1**2 + y1**2 + z1**2)) 
     dzdt1 = vz1
-    dvzdt1 = -G * m * z1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.log(B / np.sqrt(x1**2 + y1**2 + z1**2))
+    dvzdt1 = -G * m * z1 / (x1**2 + y1**2 + z1**2) ** 1.5 * A * np.exp(B / np.sqrt(x1**2 + y1**2 + z1**2))
 
     dxdt2 = vx2
     dvxdt2 = -G * m * x2 / (x2**2 + y2**2 + z2**2) ** 1.5
@@ -31,7 +31,7 @@ def  move_func(s, t):
             dxdt2, dvxdt2, dydt2, dvydt2, dzdt2, dvzdt2)
 
 G = 6.67 * 10**(-11)
-m = 10*1.98 * 10**(30)
+m = 10 * 1.98 * 10**(30)
 A = 0.5
 B = 149 * 10**(-14)
 
@@ -60,7 +60,7 @@ def solve_func(i, key):
 
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
-ball1, = plt.plot([], [], [], 'o', color='b', ms=10)
+ball1, = plt.plot([], [], [], 'o', color='b')
 ball_line1, = plt.plot([], [], [], '-', color='b')
 ball2, = plt.plot([], [], [], 'o', color='r')
 ball_line2, = plt.plot([], [], [], '-', color='r')

@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from start_data import *
 
-frames = 365
+plt.style.use('dark_background')
+frames = 1460
 seconds_in_year = 365 * 24 * 60 * 60
 years = 10
 t = np.linspace(0, years*seconds_in_year, frames)
@@ -54,13 +55,13 @@ def solve_func(i, key):
 
 fig, ax = plt.subplots()
 
-ball1, = plt.plot([], [], 'o', color='b')
-ball_line1, = plt.plot([], [], '-', color='b')
+ball1, = plt.plot([], [], 'o', color='y')
+ball_line1, = plt.plot([], [], '-', color='y')
 
 ball2, = plt.plot([], [], 'o', color='r')
 ball_line2, = plt.plot([], [], '-', color='r')
 
-plt.plot([0], [0], 'o', color='black', ms=20)
+plt.plot([0], [0], 'o', color='white', ms=20)
 
 def animate(i):
     ball1.set_data(solve_func(i, 'point')[0])
@@ -77,4 +78,4 @@ plt.axis('equal')
 edge = 3*x0e
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
-ani.save('black_hole(mod_3).gif')
+ani.save('(ready)black_hole(mod_3).gif')
