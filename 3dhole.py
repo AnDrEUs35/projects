@@ -44,9 +44,9 @@ B = 149 * 10**(-14)
 x01 = 2 * 149 * 10**9
 v_x01 = 0
 y01 = 0.1
-v_y01 = 30000
+v_y01 = 15000
 z01 = 10
-v_z01 = 30000
+v_z01 = 15000
 
 
 
@@ -62,6 +62,11 @@ backgrounds_colors = ['black']
 s0 = (x01, v_x01, y01, v_y01, z01, v_z01,
       x02, v_x02, y02, v_y02, z02, v_z02)
 sol = odeint(move_func, s0, t)
+
+accretion_disk_y = [-1, -0.5, 0, 0.5, 1]
+accretion_disk_x = [0, -0.5, 0, 0.5, 0]
+
+
 
 # Решение диф. Уравнения
 def solve_func(i, key):
@@ -94,7 +99,7 @@ ball_line1, = plt.plot([], [], [], '-', color = 'white')
 ball2, = plt.plot([], [], [], 'o', color='yellow')
 ball_line2, = plt.plot([], [], [], '-', color = 'orange')
 
-
+plt.plot(accretion_disk_x, accretion_disk_y, '-', color='orange')
 plt.plot([0], [0], [0], 'o', color='black', ms=25)
 
 def animate(i):
