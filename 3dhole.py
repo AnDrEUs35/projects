@@ -2,9 +2,6 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-import imageio
-import os
-
 
 # Определяем переменую величину
 frames = 2000
@@ -39,12 +36,12 @@ def move_func(s, t):
             dx_dt2, dv_xdt2, dydt2, dy_ydt2, dzdt2, dv_zdt2)
 
 G = 6.67 * 10**(-11)
-m = 1.98 * 10**(30)
+m = 5 * 1.98 * 10**(30)
 A = 2.55
 B = 149 * 10**(-14)
 
 
-x01 = 149 * 10**9
+x01 = 2 * 149 * 10**9
 v_x01 = 0
 y01 = 0.1
 v_y01 = 30000
@@ -53,7 +50,7 @@ v_z01 = 30000
 
 
 
-x02 = 149 * 10**9
+x02 = 2 * 149 * 10**9
 v_x02 = 0
 y02 = 0.2
 v_y02 = 15000
