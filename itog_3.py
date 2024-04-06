@@ -61,7 +61,8 @@ ball_line1, = plt.plot([], [], '-', color='y')
 ball2, = plt.plot([], [], 'o', color='r')
 ball_line2, = plt.plot([], [], '-', color='r')
 
-plt.plot([0], [0], 'o', color='white', ms=20)
+plt.plot([0], [0], 'o', color='orange', ms=20)
+plt.plot([0], [0], 'o', color='black', ms=15)
 
 def animate(i):
     ball1.set_data(solve_func(i, 'point')[0])

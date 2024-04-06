@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from start_data import *
 
-frames = 1000
+plt.style.use('dark_background')
+frames = 1460
 seconds_in_year = 365 * 24 * 60 * 60
 years = 10
 t = np.linspace(0, years*seconds_in_year, frames)
@@ -31,7 +32,7 @@ def  move_func(s, t):
             dxdt2, dvxdt2, dydt2, dvydt2, dzdt2, dvzdt2)
 
 G = 6.67 * 10**(-11)
-m = 10*1.98 * 10**(30)
+m = 10 * 1.98 * 10**(30)
 A = 0.5
 B = 149 * 10**(-14)
 
@@ -65,6 +66,7 @@ ball_line1, = plt.plot([], [], [], '-', color='b')
 ball2, = plt.plot([], [], [], 'o', color='r')
 ball_line2, = plt.plot([], [], [], '-', color='r')
 
+plt.plot([0], [0], [0], 'o', color='orange', ms=15)
 plt.plot([0], [0], [0], 'o', color='black', ms=10)
 
 def animate(i):
