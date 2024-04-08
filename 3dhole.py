@@ -59,6 +59,11 @@ v_z02 = 15000
 
 backgrounds_colors = ['black']
 
+# ellipse -_- - - -_- -- _ -- ---_ _
+theta = np.linspace(0, 2*np.pi, 100)
+a= 3
+b = 2
+# -- -- -- - - -- - - -- ----- -
 s0 = (x01, v_x01, y01, v_y01, z01, v_z01,
       x02, v_x02, y02, v_y02, z02, v_z02)
 sol = odeint(move_func, s0, t)
@@ -99,8 +104,10 @@ ball_line1, = plt.plot([], [], [], '-', color = 'white')
 ball2, = plt.plot([], [], [], 'o', color='yellow')
 ball_line2, = plt.plot([], [], [], '-', color = 'orange')
 
-plt.plot(accretion_disk_x, accretion_disk_y, '-', color='orange')
-plt.plot([0], [0], [0], 'o', color='black', ms=25)
+plt.plot(a * np.cos(theta), b * np.sin(theta))
+
+plt.plot(0, 0, 'o', color='black', ms=20)
+# plt.plot(accretion_disk_x, accretion_disk_y, '-', color='orange')
 
 def animate(i):
     ball1.set_data(solve_func(i, 'point')[0])
