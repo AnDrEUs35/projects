@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from start_data import *
 
+plt.style.use('dark_background')
 frames = 1460
 seconds_in_year = 365 * 24 * 60 * 60
 years = 10
