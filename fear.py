@@ -4,10 +4,12 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from start_data import *
 
+file = open('cs.txt', mode='w')
+
 plt.style.use('dark_background')
-frames = 1465
+frames = 100
 seconds_in_year = 365 * 24 * 60 * 60
-years = 10
+years = 1
 t = np.linspace(0, years*seconds_in_year, frames)
 
 def  move_func(s, t):
@@ -35,7 +37,8 @@ s0 = (x0e,  vx0e,  y0e,  vy0e,
       x0m,  vx0m,  y0m,  vy0m)
 
 sol = odeint(move_func, s0, t)
-
+coords1 = []
+coords2 = []
 def solve_func(i, key):
     if key == 'point':
         x1 = sol[i, 0]
@@ -51,31 +54,15 @@ def solve_func(i, key):
         x2 = sol[:i, 4]
         y2 = sol[:i, 6]
 
-    return ((x1, y1), (x2, y2))
-
-fig, ax = plt.subplots()
-
-ball1, = plt.plot([], [], 'o', color='y')
-ball_line1, = plt.plot([], [], '-', color='y')
-
-ball2, = plt.plot([], [], 'o', color='r')
-ball_line2, = plt.plot([], [], '-', color='r')
-
-plt.plot([0], [0], 'o', color='orange', ms=20)
-plt.plot([0], [0], 'o', color='black', ms=15)
+    return (str(x1), str(y1)), (str(x2), str(y2))
 
 def animate(i):
-    ball1.set_data(solve_func(i, 'point')[0])
-    ball_line1.set_data(solve_func(i, 'line')[0])
-
-    ball2.set_data(solve_func(i, 'point')[1])
-    ball_line2.set_data(solve_func(i, 'line')[1])
-
-ani = FuncAnimation(fig, animate, frames=frames, interval=30)
+    coords1.append(solve_func(i, 'point')[0])
+    coords2.append(solve_func(i, 'line')[0])
 
 plt.axis('equal')
 
-edge = 3*x0e
-ax.set_xlim(-edge, edge)
-ax.set_ylim(-edge, edge)
-ani.save('(ready)black_hole(mod_3).gif')
+file.writelines(str(coords1))
+file.write('\n')
+file.writelines(str(coords2))
+file.close()
