@@ -24,7 +24,7 @@ t = np.linspace(0, years*seconds_in_year, frames)
 def  move_func(s, t):
     ( x1, vx1, y1, vy1, 
       xm, vxm, ym, vym) = s
-    l = (x1 * vy1 - y1 * vx1) / np.sqrt(x1**2 + y1**2)
+    l = (x1 * vy1 - y1 * vx1)
     
     dxdt1 = vx1
     dvxdt1 = -rg * c**2 * x1 / 2 * (x1**2 + y1**2)**1.5 + (x1 * vy1 - y1 * vx1)**2 * x1 / (x1**2 + y1**2)**7/2 - 3 * (x1 * vy1 - y1 * vx1)**2 * rg * x1 / (x1**2 + y1**2)**9/2
