@@ -5,16 +5,16 @@ from matplotlib.animation import FuncAnimation
 
 
 G = 6.67 * 10 ** (-11)
-M = 10 * 1.98 * 10 ** (30)
+M = 1.98 * 10 ** (30)
 c = 3e8
 R = 149 * 10**9
 Rs = 696340000
 
 # некая частица 1
-x0e = 100 * 10**(9)
+x0e = 0.37499 * R
 vx0e = 0
 y0e = 0
-vy0e = 40000
+vy0e = 58980
 
 # некая частица 2
 x0m = 0
@@ -22,14 +22,15 @@ vx0m = 20000
 y0m = 2 * 149 * 10 ** 9
 vy0m = 0
 
-aph = 152 * 10**9
-Va = 25967
+aph = 0.466697 * R
+Va = 38860
 l = x0e * vy0e - y0e * vy0e
+# l = (x0e * vy0e + aph * Va) / 2
 p = (x0e**2 + y0e**2)**0.5 / Rs
 plt.style.use('dark_background')
-frames = 1000
+frames = 500
 T = 365 * 24 * 60 * 60  # seconds_in_year
-years = 20
+years = 8
 t = np.linspace(0, years * T, frames)
 
 
