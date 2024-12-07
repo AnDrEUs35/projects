@@ -9,7 +9,7 @@ M = 900 * 1.98 * 10 ** (30)
 c = 3e8
 R = 149 * 10**9
 Rs = 696340000
-eccentricity = 0.8
+eccentricity = 0.2
 
 # некая частица 1
 x0e = 0.37499 * R
@@ -38,7 +38,6 @@ def move_func(s, t):
      xm, vxm, ym, vym) = s
 
     p = (x1**2 + y1**2)**0.5 / Rs
-    # l = (x1 * vy1 + y1 * vx1) / 2
 
     dxdt1 = vx1
     dvxdt1 = -G * M * T / R**3 * x1 / p**3 * (1 + 3 * l**2 / (R**2 * c**2 * p**2))
