@@ -3,35 +3,44 @@ from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+G = 6.67 * 1e-11
+
 def f(r, t, L1):
-    r1, r2, r3,= r
+    r1, r2, r3,= r # расстояние, радиальная компонента скорости, угол 
     l = L1
-    return [r2, -1/(2*r1**2)+l**2/r1**3-1*1.5*l**2/r1**4, l/r1**2]
+    return [r2, -1/(2*r1**2) + l**2/r1**3 - 1*1.5*l**2/r1**4, l/r1**2]
 
 # Задаём
-x0 = 46001009 # km
+x0 = 46001009000 # m
 y0 = 0
 Vx = 0
-Vy = 47.36 # km / s
+Vy = 47560 # m / s
+
 ecc = 0.205
 
 phi = np.arctan2(y0, x0)
 alpha = np.arctan2(Vy, Vx)
 
-# r_g = 2 * G * M / c**2
-r_g_sun = 2.95 # km
-c = 2.99e5
-r_merc = np.sqrt(x0**2 + y0**2) / r_g_sun
-N = 300
+M = 1.98e30
+c = 2.99e5 # km / s
+r_g_sun = (2 * G * M / (c*1000)**2) # m
 
-v_merc = np.sqrt(Vx**2 + Vy**2) / c
-v_thau = v_merc * np.sin(phi - alpha) # тангенциальная скорость
+r_merc = np.sqrt(x0**2 + y0**2) / r_g_sun
+
+
+M = r_g_sun * (c * 1000)**2 / (2 * G) # kg
+print(M)
+v_merc = np.sqrt(G * M / (r_merc * r_g_sun)) / 1000 # km/s
+N = 500
+
+# v_merc = np.sqrt(Vx**2 + Vy**2) / c
+v_per_merc = v_merc * np.sqrt((1 + ecc) / (1 - ecc)) / c # тоже тангенциальная скорость
+
+v_thau = v_per_merc * np.sin(phi - alpha) # тангенциальная скорость
 v_r = v_merc * np.cos(phi - alpha) # радиальная скорость
 
 
-v_per = v_merc * np.sqrt((1 + ecc) / (1 - ecc)) / c # тоже тангенциальная скорость
-
-L1 = 1.3 * v_thau * r_merc # момент импульса для круговой орбиты
+L1 = 1.5 * v_thau * r_merc # момент импульса для круговой орбиты
 
 r0 =[r_merc, v_r, phi] # Расстояние, радиальная компонента скорость, угол
 time = 2 * np.pi * r0[0]**2 / L1 # период обращения по круговой орбите
