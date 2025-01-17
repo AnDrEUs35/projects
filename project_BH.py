@@ -11,36 +11,36 @@ def f(r, t, L1):
     return [r2, -1/(2*r1**2) + l**2/r1**3 - 1*1.5*l**2/r1**4, l/r1**2]
 
 # Задаём
-x0 = 46001009000 # m
+x0 = 46001009 # km
 y0 = 0
 Vx = 0
-Vy = 47560 # m / s
+Vy = 4756 # km / s
 
+M = 1.98e35
 ecc = 0.205
+
 
 phi = np.arctan2(y0, x0)
 alpha = np.arctan2(Vy, Vx)
 
-M = 1.98e30
-c = 2.99e5 # km / s
-r_g_sun = (2 * G * M / (c*1000)**2) # m
 
+c = 2.99e5 # km / s
+r_g_sun = (2 * G * M / (c*1000)**2) / 1000 # km
 r_merc = np.sqrt(x0**2 + y0**2) / r_g_sun
 
 
-M = r_g_sun * (c * 1000)**2 / (2 * G) # kg
+M = r_g_sun * 1000 * (c * 1000)**2 / (2 * G) # kg
 print(M)
-v_merc = np.sqrt(G * M / (r_merc * r_g_sun)) / 1000 # km/s
+v_merc = np.sqrt(G * M / (r_merc * r_g_sun * 1000)) / 1000 # km/s
 N = 500
 
-# v_merc = np.sqrt(Vx**2 + Vy**2) / c
-v_per_merc = v_merc * np.sqrt((1 + ecc) / (1 - ecc)) / c # тоже тангенциальная скорость
 
+v_per_merc = v_merc * np.sqrt((1 + ecc) / (1 - ecc)) / c 
 v_thau = v_per_merc * np.sin(phi - alpha) # тангенциальная скорость
 v_r = v_merc * np.cos(phi - alpha) # радиальная скорость
 
 
-L1 = 1.5 * v_thau * r_merc # момент импульса для круговой орбиты
+L1 = 1 * v_thau * r_merc # момент импульса для круговой орбиты
 
 r0 =[r_merc, v_r, phi] # Расстояние, радиальная компонента скорость, угол
 time = 2 * np.pi * r0[0]**2 / L1 # период обращения по круговой орбите
