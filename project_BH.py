@@ -30,7 +30,6 @@ r_merc = np.sqrt(x0**2 + y0**2) / r_g_sun
 
 
 M = r_g_sun * 1000 * (c * 1000)**2 / (2 * G) # kg
-print(M)
 v_merc = np.sqrt(G * M / (r_merc * r_g_sun * 1000)) / 1000 # km/s
 N = 500
 
@@ -44,9 +43,9 @@ L1 = 1 * v_thau * r_merc # момент импульса для круговой
 
 r0 =[r_merc, v_r, phi] # Расстояние, радиальная компонента скорость, угол
 time = 2 * np.pi * r0[0]**2 / L1 # период обращения по круговой орбите
+print(time)
 
 t = np.linspace(0, 15*time, N)
-
 sol = odeint(f, r0, t, args=(L1,))
 
 
@@ -58,14 +57,21 @@ X = radius * np.cos(angle)
 Y = radius * np.sin(angle)
 
 fig = plt.figure()
-plt.xlim(-30, 30)
-plt.ylim(-30, 30)
-plt.plot([0], [0], 'o', ms=10, color='k')
+
+plt.style.use('dark_background')
+plt.xlim(-1.2*x0, 1.2*x0)
+plt.ylim(-1.2*x0, 1.2*x0)
+plt.plot([0], [0], 'o', color='orange', ms=20)
+plt.plot([0], [0], 'o', color='black', ms=15)
 
 plt.plot(X, Y,'r',alpha=0.05)
 
+ball1, = plt.plot([], [], 'o', color='g')
+ball_line1, = plt.plot([], [], '-', color='g')
+
 def func_anim(i):
-    plt.plot(X[:i], Y[:i],'g')
+    ball1.set_data(X[i], Y[i])
+    ball_line1.set_data(X[:i], Y[:i])
 
 ani = animation.FuncAnimation(fig, func_anim, frames=np.arange(0,N,1),interval=100)
 
